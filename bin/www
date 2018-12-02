@@ -8,6 +8,7 @@ require('dotenv').config();
 const app = require('../app');
 const debug = require('debug')('airbnb:server');
 const http = require('http');
+const mongoose = require('mongoose');
 
 /**
  * Get port from environment and store in Express.
@@ -79,6 +80,14 @@ function onError(error) {
 }
 
 /**
+ * Connection to MongoDB
+ */
+function connectToMongoDB () {
+  const MONGO_URI = process.env.MONGO_URI || '';
+  return mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+}
+
+/**
  * Event listener for HTTP server "listening" event.
  */
 
@@ -87,5 +96,9 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  connectToMongoDB().then(() => {
+    debug('Listening on ' + bind);
+  }).catch(err => {
+    throw new Error(err);
+  });
 }
