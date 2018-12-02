@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   description: String,
   phoneNumber: String,
   email: String,
+  providerId: String,
   address: {
     street: String,
     city: String,
