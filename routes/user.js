@@ -11,6 +11,14 @@ router.get('/', (req, res, next) => {
   });
 });
 
+// GET /:id
+router.get('/:id', (res, res, next) => {
+  const user = {};
+  return res.status(200).json({
+    user,
+  });
+});
+
 // POST /
 router.post('/', (req, res, next) => {
   const { body } = req;
@@ -49,6 +57,19 @@ router.post('/', (req, res, next) => {
       message: err.message,
     });
   });
+});
+
+// PUT /:id
+router.put('/:id', (res, res, next) => {
+  const user = {};
+  return res.status(200).json({
+    user,
+  });
+});
+
+// DELETE /:id
+router.delete('/:id', (res, res, next) => {
+  return res.status(204).json();
 });
 
 module.exports = router;
