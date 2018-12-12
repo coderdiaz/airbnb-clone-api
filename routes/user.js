@@ -60,7 +60,7 @@ router.post('/', (req, res, next) => {
 });
 
 // PUT /:id
-router.put('/:id', (res, res, next) => {
+router.put('/:id', (req, res, next) => {
   const user = {};
   return res.status(200).json({
     user,
