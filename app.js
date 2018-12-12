@@ -21,6 +21,7 @@ firebase.initializeApp(firebaseConfig);
 const app = express();
 
 // Getting routes
+const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 
@@ -31,7 +32,8 @@ app.use(cookieParser());
 
 // Adding routes to Express Application
 app.use('/', indexRouter); // /*
-app.use('/user', userRouter); // /user*
+app.use('/auth', authRouter); // /auth/*
+app.use('/user', userRouter); // /user/*
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
