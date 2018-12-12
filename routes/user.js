@@ -68,7 +68,7 @@ router.put('/:id', (res, res, next) => {
 });
 
 // DELETE /:id
-router.delete('/:id', (res, res, next) => {
+router.delete('/:id', (req, res, next) => {
   return res.status(204).json();
 });
 
