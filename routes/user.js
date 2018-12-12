@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 });
 
 // GET /:id
-router.get('/:id', (res, res, next) => {
+router.get('/:id', (req, res, next) => {
   const user = {};
   return res.status(200).json({
     user,
