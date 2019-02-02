@@ -8,11 +8,11 @@ require('firebase/auth');
 
 // Firebase Params
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_APIKEY,
-  authDomain: process.env.FIREBASE_AUTHDOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASEURL,
-  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
+    apiKey: process.env.FIREBASE_APIKEY,
+    authDomain: process.env.FIREBASE_AUTHDOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASEURL,
+    storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
 };
 
 // Initialize Firebase
@@ -24,6 +24,7 @@ const app = express();
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
+const servicesRouter = require('./routes/services');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -34,20 +35,21 @@ app.use(cookieParser());
 app.use('/', indexRouter); // /*
 app.use('/auth', authRouter); // /auth/*
 app.use('/user', userRouter); // /user/*
+app.use('/services', servicesRouter); // /services/*
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+    next(createError(404));
 });
 
 // Error handler
 app.use((err, req, res, next) => {
-  const statusCode = err.status || 500;
-  // Return error
-  return res.status(statusCode).json({
-    code: statusCode,
-    message: err.message,
-  });
+    const statusCode = err.status || 500;
+    // Return error
+    return res.status(statusCode).json({
+        code: statusCode,
+        message: err.message,
+    });
 });
 
 module.exports = app;
